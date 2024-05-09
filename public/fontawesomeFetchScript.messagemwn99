@@ -1,0 +1,103 @@
+let simpleHit = {};
+let totalAdding = 0;
+function returnFetchBrands(page){
+    let abg = fetch("https://m19dxw5x0q-dsn.algolia.net/1/indexes/*/queries?x-algolia-agent=Algolia%20for%20JavaScript%20(4.20.0)%3B%20Browser%20(lite)%3B%20instantsearch.js%20(4.60.0)%3B%20Vue%20(2.7.15)%3B%20Vue%20InstantSearch%20(4.12.1)%3B%20JS%20Helper%20(3.15.0)&x-algolia-api-key=c79b2e61519372a99fa5890db070064c&x-algolia-application-id=M19DXW5X0Q", {
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en,th;q=0.9,en-US;q=0.8",
+    "content-type": "application/x-www-form-urlencoded",
+    "sec-ch-ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "cross-site"
+  },
+  "referrer": "https://fontawesome.com/",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": "{\"requests\":[{\"indexName\":\"fontawesome_com-splayed-6.5.1_ranked\",\"params\":\"clickAnalytics=true&distinct=true&facetFilters=%5B%5B%22family%3Abrands%22%5D%5D&facets=%5B%22categories%22%2C%22family%22%2C%22is_free%22%2C%22is_new_in_v6%22%2C%22is_sponsored%22%2C%22is_staff_favorite%22%2C%22style%22%5D&highlightPostTag=__%2Fais-highlight__&highlightPreTag=__ais-highlight__&hitsPerPage=180&maxValuesPerFacet=100&page="+page+"&query=&tagFilters=&userToken=anonymous-f1f02758-ec8a-4bf6-9934-d449b363c2e7\"},{\"indexName\":\"fontawesome_com-splayed-6.5.1_ranked\",\"params\":\"analytics=false&clickAnalytics=false&distinct=true&facetFilters=%5B%5B%22type%3Aicon%22%5D%5D&facets=family&highlightPostTag=__%2Fais-highlight__&highlightPreTag=__ais-highlight__&hitsPerPage=0&maxValuesPerFacet=100&page=0&query=&userToken=anonymous-f1f02758-ec8a-4bf6-9934-d449b363c2e7\"}]}",
+  "method": "POST",
+  "mode": "cors",
+  "credentials": "omit"
+});
+    return abg;
+}
+function returnFetch(page){
+    let abg = fetch("https://m19dxw5x0q-dsn.algolia.net/1/indexes/*/queries?x-algolia-agent=Algolia%20for%20JavaScript%20(4.20.0)%3B%20Browser%20(lite)%3B%20instantsearch.js%20(4.60.0)%3B%20Vue%20(2.7.15)%3B%20Vue%20InstantSearch%20(4.12.1)%3B%20JS%20Helper%20(3.15.0)&x-algolia-api-key=c79b2e61519372a99fa5890db070064c&x-algolia-application-id=M19DXW5X0Q", {
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en,th;q=0.9,en-US;q=0.8",
+    "content-type": "application/x-www-form-urlencoded",
+    "sec-ch-ua": "\"Not_A Brand\";v=\"8\", \"Chromium\";v=\"120\", \"Microsoft Edge\";v=\"120\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "cross-site"
+  },
+  "referrer": "https://fontawesome.com/",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": "{\"requests\":[{\"indexName\":\"fontawesome_com-splayed-6.5.1_ranked\",\"params\":\"clickAnalytics=true&distinct=true&facetFilters=%5B%5B%22style%3Aduotone%22%5D%5D&facets=%5B%22categories%22%2C%22family%22%2C%22is_free%22%2C%22is_new_in_v6%22%2C%22is_sponsored%22%2C%22is_staff_favorite%22%2C%22style%22%5D&highlightPostTag=__%2Fais-highlight__&highlightPreTag=__ais-highlight__&hitsPerPage=180&maxValuesPerFacet=100&page="+page+"&query=&tagFilters=&userToken=anonymous-f1f02758-ec8a-4bf6-9934-d449b363c2e7\"},{\"indexName\":\"fontawesome_com-splayed-6.5.1_ranked\",\"params\":\"analytics=false&clickAnalytics=false&distinct=true&facetFilters=%5B%5B%22type%3Aicon%22%5D%5D&facets=style&highlightPostTag=__%2Fais-highlight__&highlightPreTag=__ais-highlight__&hitsPerPage=0&maxValuesPerFacet=100&page=0&query=&userToken=anonymous-f1f02758-ec8a-4bf6-9934-d449b363c2e7\"}]}",
+  "method": "POST",
+  "mode": "cors",
+  "credentials": "omit"
+});
+return abg;
+}
+function responsibility(res){
+
+    res.results[0].hits.forEach(i=>{
+        ["classic_duotone","classic_thin","classic_solid","classic_light","classic_regular","sharp_solid","sharp_regular","sharp_light","sharp_thin"]
+        .forEach(k=>{
+            totalAdding++;
+            simpleHit[i.name+"_"+k] = {
+                name:i.name,
+                style:k.replace("_",""),
+                keywords:i.keywords,
+                label:i.label,
+                isFree: i.is_free,
+                categories:i.categories
+            };
+        })
+    }) 
+}
+function responsibilityBrands(res){
+
+    res.results[0].hits.forEach(i=>{
+        ["brands_"]
+        .forEach(k=>{
+            totalAdding++;
+            simpleHit[i.name+"_"+k] = {
+                name:i.name,
+                style:k.replace("_",""),
+                keywords:i.keywords,
+                label:i.label,
+                isFree: i.is_free,
+                categories:i.categories
+            };
+        })
+    }) 
+}
+returnFetch(0).then(res=>res.json()).then(responsibility);
+returnFetch(1).then(res=>res.json()).then(responsibility);
+returnFetch(2).then(res=>res.json()).then(responsibility);
+returnFetch(3).then(res=>res.json()).then(responsibility);
+returnFetch(4).then(res=>res.json()).then(responsibility);
+returnFetch(5).then(res=>res.json()).then(responsibility);
+returnFetch(6).then(res=>res.json()).then(responsibility);
+returnFetch(7).then(res=>res.json()).then(responsibility);
+returnFetch(8).then(res=>res.json()).then(responsibility);
+returnFetch(9).then(res=>res.json()).then(responsibility);
+returnFetch(10).then(res=>res.json()).then(responsibility);
+returnFetch(11).then(res=>res.json()).then(responsibility);
+returnFetch(12).then(res=>res.json()).then(responsibility);
+returnFetch(13).then(res=>res.json()).then(responsibility);
+returnFetch(14).then(res=>res.json()).then(responsibility);
+returnFetch(15).then(res=>res.json()).then(responsibility);
+returnFetch(16).then(res=>res.json()).then(responsibility);
+returnFetch(17).then(res=>res.json()).then(responsibility);
+returnFetch(18).then(res=>res.json()).then(responsibility);
+returnFetch(19).then(res=>res.json()).then(responsibility);
+returnFetchBrands(0).then(res=>res.json()).then(responsibilityBrands);
+returnFetchBrands(1).then(res=>res.json()).then(responsibilityBrands);
+returnFetchBrands(2).then(res=>res.json()).then(responsibilityBrands);

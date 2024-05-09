@@ -1,0 +1,201 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+@import url(https://fonts.googleapis.com/css?family=DM+Sans:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans+Thai:100,200,300,regular,500,600,700,800,900);
+@tailwind base;
+@tailwind components;
+html {
+  scroll-behavior: smooth;
+}
+@layer utilities {
+  .LoaderAnimation {
+    font-family: "Roboto", sans-serif;
+    width: 100%; 
+    font-weight: 600;
+    height: 100%;
+  }
+  .LoaderAnimationWrapper{
+    background: transparent;
+    animation: transformUpper 2.666s 1 ease-in-out;
+    animation-delay: 0.2s;
+    animation-fill-mode: forwards;
+    transform: translateY(-5rem)
+  }
+  .hideWhenLoadedViewbook{
+    color:black;
+    background: transparent;
+    animation: transformHide 1.4s 1 ease-in-out;
+    /* animation-delay: 0.7s; */
+    animation-fill-mode: forwards;
+    transform: translateY(-5rem)
+  }
+  .hideWhenLoaded{
+    background: transparent;
+    animation: transformHide 1s 1 ease-in-out;
+    animation-delay: 0.4s;
+    animation-fill-mode: forwards;
+    transform: translateY(-5rem)
+  }
+  .LoaderAnimationLoop,
+  .LoaderAnimationLoopDark {
+    font-family: "Roboto", sans-serif;
+    width: 100%; 
+    font-weight: 600;
+    height: 100%;
+  }
+  .LoaderAnimationLoop text {
+    animation: stroke 2.945s infinite alternate;
+    stroke-width: 2;
+    stroke: #000000;
+    fill: #000000;
+  }
+  .LoaderAnimation text {
+    animation: stroke 2.945s 1 alternate;
+    stroke-width: 2;
+    stroke: #000000;
+    fill: #000000;
+  }
+  .LoaderAnimationLoopDark text {
+    animation: strokeDark 2.945s infinite alternate;
+    stroke-width: 2;
+    stroke: #ffffff00;
+    fill: #ffffff00;
+  }
+
+  /* Sidebar */
+  .activeClassSidebar::before{
+    content: "";
+    width: 8px;
+    height: 100%;
+    background: #FF919D;
+    margin-right: calc(1rem - 8px);
+  }
+
+  .scrollbar::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100px;
+    background: #ffffff;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #e0cbcb;
+    border-radius: 100px;
+    border: 3px solid #bea618;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #c0a0b9;
+  }
+}
+@supports (-webkit-touch-callout: none) {
+    .h-screen {
+      height: -webkit-fill-available;
+    }
+  }
+  @keyframes transformUpper {
+    0% {
+      
+    }
+    100% {
+      transform: translateY(3rem);
+      /* filter: drop-shadow(8px 14px 70px rgb(201, 204, 204)); */
+    }
+  }
+  @keyframes transformHide {
+    0% {
+      
+    }
+    100% {
+      opacity: 0;
+      /* filter: drop-shadow(8px 14px 70px rgb(201, 204, 204)); */
+    }
+  }
+  @keyframes strokeDark {
+    0%   {
+      fill: rgba(140,236,227,0); 
+      stroke: rgb(255, 255, 255);
+      stroke-dashoffset: 25%; 
+      stroke-dasharray: 0 50%; 
+      stroke-width: 2;
+    }
+    70%  {
+      fill: rgba(140,236,227,0);
+      stroke: rgb(255, 255, 255); 
+    }
+    80%  {
+      fill: rgba(140,236,227,0);
+      stroke: rgb(255, 255, 255);
+      stroke-width: 3;
+    }
+    100% {
+      fill: rgb(255, 255, 255); 
+      stroke: rgba(140,236,227,0);
+      stroke-dashoffset: -25%; 
+      stroke-dasharray: 50% 0;
+      stroke-width: 0;
+    }
+  }
+  @keyframes stroke {
+    0%   {
+      fill: rgba(140,236,227,0); 
+      stroke: rgb(0, 0, 0);
+      stroke-dashoffset: 25%; 
+      stroke-dasharray: 0 50%; 
+      stroke-width: 2;
+    }
+    70%  {
+      fill: rgba(140,236,227,0);
+      stroke: rgb(0, 0, 0); 
+    }
+    80%  {
+      fill: rgba(140,236,227,0);
+      stroke: rgb(0, 0, 0);
+      stroke-width: 3;
+    }
+    100% {
+      fill: rgb(0, 0, 0); 
+      stroke: rgba(140,236,227,0);
+      stroke-dashoffset: -25%; 
+      stroke-dasharray: 50% 0;
+      stroke-width: 0;
+    }
+  }
+@tailwind utilities;
+  /*radial process bar*/
+  .CircularProgressbar {
+    width: 4rem !important;
+    overflow: visible;
+  }
+  
+  .CircularProgressbar-path {
+    stroke: white !important;
+    stroke-width: 12px !important;
+    filter: drop-shadow(2px 4px 6px white);
+  }
+
+  .CircularProgressbar-trail {
+    display: none;
+  }
+
+  .CircularProgressbar-text {
+    fill: white !important;
+  }
+
+  .ExpandedCard > span:nth-of-type(1) {
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+    text-shadow: 0px 0px 15px white;
+  }
+  .ExpandedCard > span:nth-of-type(2) {
+    color: rgb(236, 236, 236);
+    font-size: 15px;
+  }
+  
+  .chartContainer {
+    width: 70%;
+  }
